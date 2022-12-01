@@ -5,7 +5,8 @@
 
 class Date{
     public:
-        //Constructeur avec params
+        //Constructeurs
+        Date();
         Date(int year, int month, int day);
         //Getteurs
         int year();
