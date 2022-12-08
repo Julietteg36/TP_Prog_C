@@ -2,14 +2,7 @@
 #include <string>
 using namespace std;
 
-//Constructeur
-Date::Date(){
-    this->_year = 2022;
-    this->_month = 1;
-    this->_day = 1;
-}
-
-Livre::Livre(string title, string author, string language, string category, Date publication_date, int isbn){
+Livre::Livre(string title, Auteur author, string language, string category, Date publication_date, int isbn){
     this->_title = title;
     this->_author = author;
     this->_language = language;
@@ -23,7 +16,7 @@ string Livre::title(){
     return this->_title;
 }
 
-string Livre::author(){
+Auteur Livre::author(){
     return this->_author;
 }
 
@@ -47,7 +40,7 @@ int Livre::isbn(){
 void Livre::updateTitle(string title){
     this->_title = title;
 }
-void Livre::updateAuthor(string author){
+void Livre::updateAuthor(Auteur author){
     this->_author = author;
 }
 

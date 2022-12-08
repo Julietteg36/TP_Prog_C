@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "date.h"
+#include "auteur.h"
 using namespace std;
 
 class Livre{
@@ -11,17 +12,17 @@ class Livre{
 public:
 	//Constructeurs
 	Livre();
-	Livre(string title, string author, string language, string category, Date publication_date, int isbn);
+	Livre(string title, Auteur author, string language, string category, Date publication_date, int isbn);
 	//Getteurs
 	string title();
-	string author();
+	Auteur author();
 	string language(); 
 	string category(); 
 	Date publication_date();
 	int isbn();
 	//Setteurs
 	void updateTitle(string title);
-	void updateAuthor(string author);
+	void updateAuthor(Auteur author);
 	void updateLanguage(string language);
 	void updateCategory(string category);
 	void updatePublicationDate(Date publication_date);
@@ -29,7 +30,7 @@ public:
 
 private:
 	string _title;
-	string _author;
+	Auteur _author;
 	string _language;
 	string _category; 
 	Date _publication_date;

@@ -1,6 +1,12 @@
 #include "date.h"
 
-//Constructeur
+//Constructeurs
+Date::Date(){
+    this->_year = 2022;
+    this->_month = 01;
+    this->_day = 01;
+}
+
 Date::Date(int year, int month, int day){
     this->_year = year;
     this->_month = month;
