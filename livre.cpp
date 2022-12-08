@@ -36,6 +36,10 @@ int Livre::isbn(){
     return this->_isbn;
 }
 
+bool Livre::dispo(){
+    return this->_dispo;
+}
+
 //Setteurs
 void Livre::updateTitle(string title){
     this->_title = title;
@@ -58,4 +62,8 @@ void Livre::updatePublicationDate(Date publication_date){
 
 void Livre::updateIsbn(int isbn){
     this->_isbn = isbn;
+}
+
+void Livre::updateDispo(bool dispo){
+    this->_dispo = dispo;
 }

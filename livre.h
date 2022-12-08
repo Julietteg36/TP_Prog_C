@@ -19,6 +19,7 @@ public:
 	string language(); 
 	string category(); 
 	Date publication_date();
+	bool dispo();
 	int isbn();
 	//Setteurs
 	void updateTitle(string title);
@@ -27,6 +28,7 @@ public:
 	void updateCategory(string category);
 	void updatePublicationDate(Date publication_date);
 	void updateIsbn(int isbn);
+	void updateDispo(bool dispo);
 
 private:
 	string _title;
@@ -35,6 +37,7 @@ private:
 	string _category; 
 	Date _publication_date;
 	int _isbn;
+	bool _dispo = true;
 };
 
 #endif

@@ -21,7 +21,7 @@ class Lecteur{
         void updateId(string id);
         void updateFirstName(string first_name);
         void updateLastName(string last_name);
-        void updateIsbn(int);
+        void addIsbn(int);
 
     private: 
         string _id; 

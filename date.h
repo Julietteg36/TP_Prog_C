@@ -2,6 +2,7 @@
 #define DATE_H
 
 #include <iostream>
+#include <ctime>
 
 class Date{
     public:

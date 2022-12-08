@@ -43,6 +43,6 @@ void Lecteur::updateLastName(string last_name){
     this->_last_name = last_name;
 }
 
-void Lecteur::updateIsbn(int isbn){
+void Lecteur::addIsbn(int isbn){
     this->_isbn.push_back(isbn);
 }

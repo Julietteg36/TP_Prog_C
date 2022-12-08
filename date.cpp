@@ -1,10 +1,15 @@
 #include "date.h"
 
+using namespace std;
+
 //Constructeurs
 Date::Date(){
-    this->_year = 2022;
-    this->_month = 01;
-    this->_day = 01;
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+
+    this->_year = now->tm_year + 1900;
+    this->_month = now->tm_mon + 1;
+    this->_day = now->tm_mday;
 }
 
 Date::Date(int year, int month, int day){
