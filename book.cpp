@@ -67,3 +67,4 @@ void Book::updateIsbn(int isbn){
 void Book::updateDispo(bool dispo){
     this->_dispo = dispo;
 }
+

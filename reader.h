@@ -24,7 +24,7 @@ class Reader{
         void addIsbn(int);
         void clearIsbn();
         //Surcharge de l'opérateur <<
-        friend ostream& operator<<(ostream& os, const Reader& reader);
+        friend ostream& operator<<(ostream& os, Reader& reader);
 
     private: 
         string _id; 
@@ -33,14 +33,12 @@ class Reader{
         vector <int> _isbn;
 };
 
-ostream& operator<<(ostream& os, const Reader& reader)
-{
-    os << reader._first_name << " " << reader._last_name << " (id : " << reader._id << ") borrows currently : \n";
-    for(int i = 0; i < reader._isbn.size(); i++)
+ostream& operator<<(ostream& os, Reader& reader){
+    os << reader.first_name() << " " << reader.last_name() << " (id : " << reader.id() << "), currently borrows : \n";
+    for(int i = 0; i < reader.isbn().size(); i++)
     {
-        os << reader._isbn[i] << "\n";
+        os << reader.isbn()[i];
     }
-    return os;
 }
 
 #endif

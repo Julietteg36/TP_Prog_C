@@ -18,7 +18,7 @@ class Date{
         void updateMonth(int month);
         void updateDay(int day);
         //Surcharge de l'opérateur <<
-        friend ostream& operator<<(ostream& os, const Date& date);
+        friend ostream& operator<<(std::ostream& os, Date& date);
 
     private: 
         int _year;
@@ -26,9 +26,9 @@ class Date{
         int _day;
 };
 
-ostream& operator<<(ostream& os, const Date& date)
+ostream& operator<<(ostream& os, Date& date)
 {
-    os << date._day << "/" << date._month << "/" << date._year;
+    os << date.day() << "/" << date.month() << "/" << date.year();
     return os;
 }
 

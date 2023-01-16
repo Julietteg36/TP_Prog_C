@@ -50,3 +50,4 @@ void Reader::addIsbn(int isbn){
 void Reader::clearIsbn(){
     this->_isbn.clear();
 }
+

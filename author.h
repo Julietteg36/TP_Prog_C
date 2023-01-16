@@ -24,7 +24,7 @@ public:
     void updateId(int id);
     void updateBirthdayDate(Date birthday_date);
 	//Surcharge de l'opérateur <<
-	friend ostream& operator<<(ostream& os, const Author& author);
+	friend ostream& operator<<(std::ostream& os, Author& author);
 
 private: 
 	string _last_name;
@@ -33,9 +33,9 @@ private:
 	Date _birthday_date;
 };
 
-ostream& operator<<(ostream& os, const Author& author)
+ostream& operator<<(ostream& os, Author &author)
 {
-    os << author._first_name << " " << author._last_name << " (id : " << author._id << "), born in " << author._birthday_date << "\n";
+    os << author.first_name() << " " << author.last_name() << " (id : " << author.id() << "), born in " << author.birthday_date() << "\n";
     return os;
 }
 
