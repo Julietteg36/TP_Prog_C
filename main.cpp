@@ -11,11 +11,17 @@ int main(){
 
     Library lib = Library();
     
-    Author rowling = Author("J.K.", "Rowling", 0001, Date(31, 07, 1965));
-    Author camus = Author("Albert", "Camus", 0002, Date(07, 11, 1913));
-    Author hugo = Author("Victor", "Hugo", 0003, Date(26, 02, 1802));
-    Author proust = Author("Marcel", "Proust", 0004, Date(10, 07, 1871));
-    Author flaubert = Author("Gustave", "Flaubert", 0005, Date(12, 12, 1821));
+    Author rowling = Author("J.K.", "rowling", 0001, Date(31, 07, 1965));
+    Author camus = Author("Albert", "camus", 0002, Date(07, 11, 1913));
+    Author hugo = Author("Victor", "hugo", 0003, Date(26, 02, 1802));
+    Author proust = Author("Marcel", "proust", 0004, Date(10, 07, 1871));
+    Author flaubert = Author("Gustave", "flaubert", 0005, Date(12, 12, 1821));
+
+    lib.addAuthor(rowling);
+    lib.addAuthor(camus);
+    lib.addAuthor(hugo);
+    lib.addAuthor(proust);
+    lib.addAuthor(flaubert);
 
     Book harryPotter = Book("Harry Potter à l'école des sorciers", rowling, "English", "Fantasy", Date(26, 06, 1997), 0);
     Book animauxFantastiques = Book("Les Animaux fantastiques", rowling, "English", "Fantasy", Date(01, 03, 2001), 1);
@@ -27,25 +33,45 @@ int main(){
     Book swann = Book("Du côté de chez Swann", proust, "French", "Novel", Date(14, 11, 1913), 7);
     Book bovary = Book("Madame Bovary", flaubert, "French", "Novel", Date(15, 12, 1856), 8);
 
+    lib.addBook(harryPotter);
+    lib.addBook(animauxFantastiques);
+    lib.addBook(etranger);
+    lib.addBook(peste);
+    lib.addBook(miserables);
+    lib.addBook(condamne);
+    lib.addBook(tempsPerdu);
+    lib.addBook(swann);
+    lib.addBook(bovary);
+
     Reader elsa = Reader("elsaa", "Elsa", "Allard", {});
     Reader juliette = Reader("julietteg", "Juliette", "Gagnepain", {});
 
+    lib.addReader(elsa);
+    lib.addReader(juliette);
+
+    cout << "Elsa initial state : \n";
     cout << elsa;
-    cout << hugo;
-    cout << etranger;
 
-    Loan loanElsa = Loan(Date(05, 01, 2022), 1, elsa.id());
-    Loan loanJuliette = Loan(Date(07, 01, 2022), 1, juliette.id());
+    cout << "\nElsa borrows a book\n";
+    lib.BorrowBook(elsa, swann);
 
-    // lib.BorrowBook(elsa, 1);
-    // lib.BorrowBook(juliette, 1);
+    cout << "Elsa state : \n";
+    cout << elsa;
+    cout << "\nBook state : \n";
+    cout << swann;
+
+    cout << "\n\nElsa return the book\n";
+    lib.ReturnBook(elsa, swann);
+
+    cout << "Elsa state : \n";
+    cout << elsa;
+    cout << "\nBook state : \n";
+
+    lib.ListAllBooksOfAnAuthor(hugo);
 
 
 
     // ------------------------- T E S T S -------------------------
-
-
-
 
 
     // //Date class test

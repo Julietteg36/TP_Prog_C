@@ -41,9 +41,9 @@ class Book{
 		bool _dispo = true;
 };
 
-ostream& operator<<(ostream& os, Book &book)
+inline ostream& operator<<(ostream& os, Book &book)
 {
-    os << book.title() << " (isbn : " << book.isbn() << "), written by " << book.author() << " in " << book.language() << " on " << book.publication_date() << ", category " << book.category() << ", is ";
+    os << book.title() << " (isbn : " << book.isbn() << "), written by " << book.author().first_name() << " " << book.author().last_name() << " in " << book.language() << ", category " << book.category() << ", is ";
 	if(book.dispo() == true)
 	{
 		os << "available";

@@ -51,6 +51,6 @@ void Author::updateBirthdayDate(Date birthday_date){
 
 inline ostream& operator<<(ostream& os, Author& author)
 {
-    os << author.first_name() << " " << author.last_name() << " (id : " << author.id() << "), born in " << author.birthday_date() << "\n";
+    os << author.first_name() << " " << author.last_name() << " (id : " << author.id() << ")\n";
     return os;
 }

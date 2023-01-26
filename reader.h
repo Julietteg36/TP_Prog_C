@@ -33,7 +33,7 @@ class Reader{
         vector <int> _isbn;
 };
 
-ostream& operator<<(ostream& os, Reader& reader){
+inline ostream& operator<<(ostream& os, Reader& reader){
     os << reader.first_name() << " " << reader.last_name() << " (id : " << reader.id() << "), currently borrows : \n";
     for(int i = 0; i < reader.isbn().size(); i++)
     {

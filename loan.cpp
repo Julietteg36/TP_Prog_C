@@ -1,14 +1,13 @@
 #include "loan.h"
+#include <algorithm>
 
 //Constructors
 Loan::Loan(){
-    this->_loan_date = Date();
     this->_isbn = 0;
     this->_reader_id = "";
 }
 
-Loan::Loan(Date loan_date, int isbn, string reader_id){
-    this->_loan_date = loan_date;
+Loan::Loan(string reader_id, int isbn){
     this->_isbn = isbn;
     this->_reader_id = reader_id;
 }

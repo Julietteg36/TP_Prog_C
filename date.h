@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ctime>
+using namespace std;
 
 class Date{
     public:
@@ -26,7 +27,7 @@ class Date{
         int _day;
 };
 
-ostream& operator<<(ostream& os, Date& date)
+inline ostream& operator<<(ostream& os, Date& date)
 {
     os << date.day() << "/" << date.month() << "/" << date.year();
     return os;

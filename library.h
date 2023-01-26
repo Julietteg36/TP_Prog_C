@@ -24,13 +24,13 @@ class Library{
     vector <Reader> readers();
     vector <Loan> loans();
     //Setteurs
-    void updateBooks(Book book);
-    void updateAuthors(Author author);
-    void updateReaders(Reader reader);
-    void addLoan(Loan loan);
-    void deleteLoan(Book book);
+    void addBook(Book book);
+    void addAuthor(Author author);
+    void addReader(Reader reader);
+    void addLoan(Loan &loan);
+    void deleteLoan(Book &book);
 
-    void BorrowBook(Reader &reader, Book &book, Date &date);
+    void BorrowBook(Reader &reader, Book &book);
     void ReturnBook(Reader &reader, Book &book);
 
     vector <Book> ListAllBooksOfAnAuthor(Author author);

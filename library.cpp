@@ -1,4 +1,5 @@
 #include "library.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -33,37 +34,37 @@ vector <Loan> Library::loans(){
 }
 
 //Setteurs
-void Library::updateBooks(Book book){
+void Library::addBook(Book book){
     this->_books.push_back(book);
 }
 
-void Library::updateAuthors(Author author){
+void Library::addAuthor(Author author){
     this->_authors.push_back(author);
 }
 
-void Library::updateReaders(Reader reader){
+void Library::addReader(Reader reader){
     this->_readers.push_back(reader);
 }
 
-void Library::addLoan(Loan loan){
+void Library::addLoan(Loan &loan){
     this->_loans.push_back(loan);
 }
 
-void Library::BorrowBook(Reader &reader, Book &book, Date &date){
+void Library::BorrowBook(Reader &reader, Book &book){
     if(book.dispo() == false)
     {
         cout << "This book is currently borrowed \n";
     }
     else
     {
-        Loan loan = Loan(date, book.isbn(), reader.id());
+        Loan loan = Loan(reader.id(), book.isbn());
         this->addLoan(loan);
         book.updateDispo(false);
         reader.addIsbn(book.isbn());
     }
 }
 
-void Library::deleteLoan(Book book){
+void Library::deleteLoan(Book &book){
     auto it = find_if(this->loans().begin(), this->loans().end(), [&book](Loan &loan) {return loan.isbn() == book.isbn(); });
 
     if(it != this->_loans.end())
@@ -81,20 +82,20 @@ void Library::ReturnBook(Reader &reader, Book &book){
     }
     else
     {
-        deleteLoan(book);
+        //deleteLoan(book);
         book.updateDispo(true);
-        cout << book.title() << "has been returned \n";
+        reader.isbn().erase(remove(reader.isbn().begin(), reader.isbn().end(), book.isbn()), reader.isbn().end());
     }
 }
 
-vector <Book> Library::ListAllBooksOfAnAuthor(Author author){
+vector<Book> Library::ListAllBooksOfAnAuthor(Author author){
     cout << "All books of " << author.first_name() << " " << author.last_name() << "\n";
 
     for(int i = 0; i < this->_books.size(); i++)
     {
         if(author.last_name() == this->_books[i].author().last_name())
         {
-            cout << this->_books[i] << "\n";
+            cout << this->_books[i].title() << "\n";
         }
 
     }

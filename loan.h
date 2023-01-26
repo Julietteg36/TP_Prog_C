@@ -11,7 +11,7 @@ class Loan{
     public:
         //Constructors
         Loan();
-        Loan(Date loan_date, int isbn, string reader_id);
+        Loan(string reader_id, int isbn);
         //Guetteurs
         Date loan_date();
         int isbn();
