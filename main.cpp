@@ -66,6 +66,10 @@ int main(){
     cout << "Elsa state : \n";
     cout << elsa;
     cout << "\nBook state : \n";
+    cout << swann;
+
+    cout << "\n----------------------\n";
+
 
     lib.ListAllBooksOfAnAuthor(hugo);
 
