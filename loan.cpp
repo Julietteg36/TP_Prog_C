@@ -1,5 +1,4 @@
 #include "loan.h"
-#include <algorithm>
 
 //Constructors
 Loan::Loan(){
