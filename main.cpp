@@ -1,149 +1,181 @@
-#include "date.h"
-#include "book.h"
-#include "reader.h"
-#include "loan.h"
-#include "library.h"
-#include "author.h"
+#include "client.h"
+#include "order.h"
+#include "product.h"
+#include "store.h"
 #include <iostream>
 using namespace std;
 
+
+
 int main(){
+    Store store = Store({}, {}, {});
+    Product product1 = Product(1, "PS4", "Console de jeu Sony", 5, 250.00);
+    Product product2 = Product(2, "Le réveil de la Force", "Septième film de la série Star Wars", 8, 10.00);
+    Client client = Client(1, "Juliette", "Gagnepain", {});
+    store.addProduct(product1);
+    store.addProduct(product2);
+    store.addClient(client);
 
-    Library lib = Library();
-    
-    Author rowling = Author("J.K.", "rowling", 0001, Date(31, 07, 1965));
-    Author camus = Author("Albert", "camus", 0002, Date(07, 11, 1913));
-    Author hugo = Author("Victor", "hugo", 0003, Date(26, 02, 1802));
-    Author proust = Author("Marcel", "proust", 0004, Date(10, 07, 1871));
-    Author flaubert = Author("Gustave", "flaubert", 0005, Date(12, 12, 1821));
+    //Menu
+    int choice = 0;
 
-    lib.addAuthor(rowling);
-    lib.addAuthor(camus);
-    lib.addAuthor(hugo);
-    lib.addAuthor(proust);
-    lib.addAuthor(flaubert);
+    cout << "                                EasyStore --- Welcome !\n\n\n";
+    cout << "1 - Store\n";
+    cout << "2 - Clients\n";
+    cout << "3 - Orders\n\n";
+    cin >> choice;
 
-    Book harryPotter = Book("Harry Potter à l'école des sorciers", rowling, "English", "Fantasy", Date(26, 06, 1997), 0);
-    Book animauxFantastiques = Book("Les Animaux fantastiques", rowling, "English", "Fantasy", Date(01, 03, 2001), 1);
-    Book etranger = Book("L'Etranger", camus, "French", "Novel", Date(01, 01, 1942), 2);
-    Book peste = Book("La Peste", camus, "French", "Novel", Date(10, 06, 1947), 3);
-    Book miserables = Book("Les Misérables", hugo, "French", "Novel", Date(01, 01, 1862), 4);
-    Book condamne = Book("Le Dernier Jour d'un condamné", hugo, "French", "Novel", Date(01, 02, 1829), 5);
-    Book tempsPerdu = Book("A la recherche du temps perdu", proust, "French", "Novel", Date(01, 01, 1913), 6);
-    Book swann = Book("Du côté de chez Swann", proust, "French", "Novel", Date(14, 11, 1913), 7);
-    Book bovary = Book("Madame Bovary", flaubert, "French", "Novel", Date(15, 12, 1856), 8);
+    //Gestion des produits du magasin
+    if(choice == 1)
+    {
+        cout << "   1 - Display all products\n";
+        cout << "   2 - Add a product\n";
+        cout << "   3 - Search a product\n";
+        cout << "   4 - Update quantity of a product\n";
+        cout << "   5 - Back\n";
+        cin >> choice;
 
-    lib.addBook(harryPotter);
-    lib.addBook(animauxFantastiques);
-    lib.addBook(etranger);
-    lib.addBook(peste);
-    lib.addBook(miserables);
-    lib.addBook(condamne);
-    lib.addBook(tempsPerdu);
-    lib.addBook(swann);
-    lib.addBook(bovary);
+        if(choice == 1)
+        {
+            store.productsDisplay();
+        }
+        else if(choice == 2)
+        {
+            int id;
+            string label;
+            string details; 
+            int quantity; 
+            float price;
 
-    Reader elsa = Reader("elsaa", "Elsa", "Allard", {});
-    Reader juliette = Reader("julietteg", "Juliette", "Gagnepain", {});
+            cout << "Label : ";
+            cin >> label;
+            cout << "\nId : ";
+            cin >> id;
+            cout <<"\nDetails : ";
+            cin >> details;
+            cout <<"\nPrice : ";
+            cin >> price;
+            cout <<"\nQuantity : ";
+            cin >> quantity;
 
-    lib.addReader(elsa);
-    lib.addReader(juliette);
+            Product product = Product(id, label, details, quantity, price);
+            store.addProduct(product);
+        }
+        else if(choice == 3)
+        {
+            string productName;
+            int productId;
 
-    cout << "Elsa initial state : \n";
-    cout << elsa;
+            cout << "Name of the product : ";
+            cin >> productName;
+            cout <<"\nId of the product : ";
+            cin >> productId;
+            cout << "\n";
 
-    cout << "\nElsa borrows a book\n";
-    lib.BorrowBook(elsa, swann);
+            store.displayProductByNameOrId(productName, productId);
+        }
+        else if(choice == 4)
+        {
+            string productName;
+            int newQuantity;
+            cout << "Name of the product : ";
+            cin >> productName;
+            cout << "\nNew quantity :";
+            cin >> newQuantity;
+            cout << "\n";
 
-    cout << "Elsa state : \n";
-    cout << elsa;
-    cout << "\nBook state : \n";
-    cout << swann;
+            store.updateQuantityProductByName(productName, newQuantity);
+        }
+        else if(choice == 5)
+        {
+            cout.clear();
+        }
+    }
 
-    cout << "\n\nElsa return the book\n";
-    lib.ReturnBook(elsa, swann);
+    //Gestion des clients
+    else if(choice == 2)
+    {
+        cout << "   1 - Display all clients\n";
+        cout << "   2 - Add a client\n";
+        cout << "   3 - Search a client\n";
+        cout << "   4 - Back\n";
+    cin >> choice;
 
-    cout << "Elsa state : \n";
-    cout << elsa;
-    cout << "\nBook state : \n";
-    cout << swann;
+        if(choice == 1)
+        {
+            store.clientsDisplay();
+        }
+        else if(choice == 2)
+        {
+           int id;
+            string first_name;
+            string last_name;
 
-    cout << "\n----------------------\n";
+            cout << "First name : ";
+            cin >> first_name;
+            cout << "\nLast name : ";
+            cin >> last_name;
+            cout <<"\nId : ";
+            cin >> id;
 
+            Client client = Client(id, first_name, last_name, {});
+            store.addClient(client);
+        }
+        else if(choice == 3)
+        {
+            string clientFirstName;
+            string clientLastName;
+            int clientId;
 
-    lib.ListAllBooksOfAnAuthor(hugo);
+            cout << "First name of the client : ";
+            cin >> clientFirstName;
+            cout << "\nLast name of the client : ";
+            cin >> clientLastName;
+            cout << "\nId of the client : ";
+            cin >> clientId;
+            cout << "\n";
+            store.displayClientByNameOrId(clientFirstName, clientLastName, clientId);
+        }
+        else if(choice == 4)
+        {
+            cout.clear();
+        }
 
+        //Gestion des clients
+        else if(choice == 3)
+        {
+            cout << "   1 - Display all orders\n";
+            cout << "   2 - Confirm an order\n";
+            cout << "   3 - Update order status\n";
+            cout << "   4 - Back\n";
+        cin >> choice;
 
+            if(choice == 1)
+            {
+                store.ordersDisplay();
+            }
+            else if(choice == 2)
+            {
+                string clientFirstName;
+                string clientLastName;
 
-    // ------------------------- T E S T S -------------------------
+                store.confirmOrder(store.findClient(clientFirstName, clientLastName));
+            }
+            else if(choice == 3)
+            {
+                bool status;
+                int idOrder;
 
-
-    // //Date class test
-    // Date d(2022, 12, 1);
-    // cout << d.month() << "\n";
-    // d.updateDay(2);
-    // cout << d.day() <<"\n";
-
-    // //Book class test
-    // book l("A brief history of time", authors), "English", "Popularization", Date(), 0001);
-    // authorsa =  l.author();
-    // a.updateLastName("Hawking");
-    // cout << a.last_name() + "\n";
-    // l.updateLanguage("French");
-    // cout << l.language() << "\n";
-
-    // //Reader class test
-    // reader l("julietteg", "Gagnepain", "Juliette", {});
-    // cout << l.id() << "\n";
-    // l.updateIsbn(1);
-    // for(int i = 0; i < l.isbn().size(); i++)
-    // {
-    //     cout << l.isbn()[i];
-    // }
-
-    //Loan class test
-    // Emprunt e(Date(), 1, "julietteg");
-    // cout << e.isbn() << "\n";
-    // e.updateIdreader("Julietteg");
-    // cout << e.id_reader();
-
-
-    //Loan and return book test
-    // Library lib = Library();
-    // Author author("Hawking", "Stephen", 01, Date());
-    // Book book("Titre", author, "English", "Popularization", Date(), 1234);
-    // Reader reader("julietteg36", "Gagnepain", "Juliette", {});
-
-    // lib.updateAuthors(author);
-    // lib.updateReaders(reader);
-    // lib.updateBooks(book);
-    // cout << "Dispo du book avant emprunt : " << book.dispo() << "\n";
-    // cout << "Liste Isbn du reader avant emprunt : ";
-    // for(int i = 0; i < reader.isbn().size(); i++)
-    // {
-    //     cout << reader.isbn()[i];
-    // }
-    // cout << "\n";
-
-    // lib.BorrowBook(reader, book);
-
-    // cout << "Dispo du book après emprunt : " << book.dispo() << "\n";
-    // cout << "Liste Isbn du reader après emprunt : ";
-    // for(int i = 0; i < reader.isbn().size(); i++)
-    // {
-    //     cout << reader.isbn()[i];
-    // }
-    // cout << "\n";
-
-    // ReturnBook(reader, book);
-
-    // cout << "Dispo du book après restitution : " << book.dispo() << "\n";
-    // cout << "Liste Isbn du reader après restitution : ";
-    // for(int i = 0; i < reader.isbn().size(); i++)
-    // {
-    //     cout << reader.isbn()[i];
-    // }
-    // cout << "\n";
-    
-    // return 0;
+                cout << "New status : ";
+                cin >> status;
+                cout << "\nOrder Id :";
+                cin >> idOrder;
+                store.updateOrderStatus(status, idOrder);
+            }
+            else if(choice == 4)
+            {
+                cout.clear();
+            }
+        }
+    }      
 }
